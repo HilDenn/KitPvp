@@ -1,0 +1,15 @@
+name: Plugin
+version: 1.12
+main: me.hilden.plugin.Main
+authors: [ HilDen ]
+commands:
+   spawn:
+     description: Tak nado blin
+     usage: /spawn
+   kits:
+    description: Tak nado
+    usage: /kits
+   stats:
+      description: stats
+      usage: /stats
+
