@@ -12,7 +12,6 @@ import org.bukkit.scoreboard.*;
 
 public class StatsScoreboard implements Listener {
 
-    PlayerMoneys playerMoneys = new PlayerMoneys();
     public void reloadScoredoard(Player player){
     ScoreboardManager manager = Bukkit.getScoreboardManager();
     Scoreboard board = manager.getNewScoreboard();
@@ -41,8 +40,6 @@ public class StatsScoreboard implements Listener {
         Score kdNull = objective.getScore(ChatColor.BLUE + "У вас 0 убйиств или смертей, невозможно посчитать КД");
         kdNull.setScore(2);
     }
-        Score scoreMoney = objective.getScore(ChatColor.GOLD + "Монеты: " + playerMoneys.moneyPlayer.get(player.getUniqueId()));
-        scoreMoney.setScore(1);
 
         player.setScoreboard(board);
 }
@@ -62,12 +59,14 @@ public class StatsScoreboard implements Listener {
 
     @EventHandler
     public void updateScoreboards(PlayerDeathEvent event){
-        Player killer = event.getEntity().getKiller();
         Player dead = event.getEntity();
         dead.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
         reloadScoredoard(dead);
-        killer.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
-        reloadScoredoard(killer);
+        if (event.getEntity().getKiller() != null) {
+            Player killer = event.getEntity().getKiller();
+            killer.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
+            reloadScoredoard(killer);
+        }
     }
 
 //        ScoreboardManager manager = Bukkit.getScoreboardManager();

@@ -2,21 +2,17 @@ package kits;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.potion.PotionType;
-
-import java.util.HashMap;
-import java.util.List;
 
 public class KitTheTank implements Listener {
     private Inventory invTheTank;
@@ -43,6 +39,8 @@ public class KitTheTank implements Listener {
         PotionMeta potionMeta = (PotionMeta) itemStackPotion.getItemMeta();
         potionMeta.setDisplayName(ChatColor.DARK_GREEN + "Эффект медлительности 2");
         potionMeta.addCustomEffect(new PotionEffect(PotionEffectType.SLOW, 0, 1), true);
+        potionMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        potionMeta.setColor(Color.FUCHSIA);
         itemStackPotion.setItemMeta(potionMeta);
 
         ItemStack itemStackHelmet = new ItemStack(Material.IRON_HELMET);
@@ -54,7 +52,7 @@ public class KitTheTank implements Listener {
         ItemMeta itemMetaChestplate = itemStackChestplate.getItemMeta();
         itemMetaChestplate.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, false);
         itemStackChestplate.setItemMeta(itemMetaChestplate);
-//хуйню которая ищет вещи в инвентаре через contains и надевает а эту залупу удалить нахуй
+
         ItemStack itemStackLeggins = new ItemStack(Material.IRON_LEGGINGS);
         ItemMeta itemMetaLeggins = itemStackLeggins.getItemMeta();
         itemMetaLeggins.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, false);
@@ -65,13 +63,19 @@ public class KitTheTank implements Listener {
         itemMetaBoots.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, false);
         itemStackBoots.setItemMeta(itemMetaBoots);
 
+        ItemStack itemStackBack = new ItemStack(Material.BARRIER);
+        ItemMeta itemMetaBack = itemStackBack.getItemMeta();
+        itemMetaBack.setDisplayName(ChatColor.LIGHT_PURPLE + "Вернуться назад");
+        itemStackBack.setItemMeta(itemMetaBack);
+
 
         inventory.addItem(itemStackSword);
         inventory.addItem(itemStackGapple);
-        inventory.addItem(itemStackHelmet);
-        inventory.addItem(itemStackChestplate);
-        inventory.addItem(itemStackLeggins);
-        inventory.addItem(itemStackBoots);
-        inventory.addItem(itemStackPotion);
+        inventory.setItem(9, itemStackHelmet);
+        inventory.setItem(10, itemStackChestplate);
+        inventory.setItem(11, itemStackLeggins);
+        inventory.setItem(12, itemStackBoots);
+        inventory.setItem(18, itemStackPotion);
+        inventory.setItem(26, itemStackBack);
     }
 }

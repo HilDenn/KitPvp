@@ -4,10 +4,10 @@ main: me.hilden.plugin.Main
 authors: [ HilDen ]
 commands:
    spawn:
-     description: Tak nado blin
+     description: teleporting on spawn
      usage: /spawn
    kits:
-    description: Tak nado
+    description: open menu kits
     usage: /kits
    stats:
       description: stats

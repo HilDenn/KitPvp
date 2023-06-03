@@ -2,11 +2,13 @@ package kits;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,7 @@ public class KitsMenu {
     private final Inventory kitMenuInventory;
 
     public KitsMenu() {
-        List<String> info = new ArrayList<String>();
+        List<String> info = new ArrayList<>();
         info.add(ChatColor.DARK_BLUE + (ChatColor.BOLD + "ЛКМ - Выбрать"));
         info.add(ChatColor.DARK_BLUE + (ChatColor.BOLD + "ПКМ - Посмотреть"));
         kitMenuInventory = Bukkit.createInventory(null, 27, "Меню китов");
@@ -35,6 +37,7 @@ public class KitsMenu {
         ItemMeta itemMetaSwordmen = itemStackSwordmen.getItemMeta();
         itemMetaSwordmen.setDisplayName(ChatColor.BLUE + "Мечник");
         itemMetaSwordmen.setLore(info);
+        itemMetaSwordmen.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         itemStackSwordmen.setItemMeta(itemMetaSwordmen);
         kitMenuInventory.addItem(itemStackSwordmen);
 
@@ -43,6 +46,7 @@ public class KitsMenu {
         ItemMeta itemMetaTank = itemStackTank.getItemMeta();
         itemMetaTank.setDisplayName(ChatColor.DARK_BLUE + "Танк");
         itemMetaTank.setLore(info);
+        itemMetaTank.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         itemStackTank.setItemMeta(itemMetaTank);
         kitMenuInventory.addItem(itemStackTank);
 
@@ -51,54 +55,39 @@ public class KitsMenu {
         ItemMeta itemMetaAssasin = itemStackAssasin.getItemMeta();
         itemMetaAssasin.setDisplayName(ChatColor.WHITE + "Ассасин");
         itemMetaAssasin.setLore(info);
+        itemMetaAssasin.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         itemStackAssasin.setItemMeta(itemMetaAssasin);
         kitMenuInventory.addItem(itemStackAssasin);
+
+        //Alchemist
+        ItemStack itemStackAlchemist = new ItemStack(Material.SPLASH_POTION);
+        PotionMeta itemMetaAlchemist = (PotionMeta) itemStackAlchemist.getItemMeta();
+        itemMetaAlchemist.setDisplayName(ChatColor.DARK_GREEN + "Алхимик");
+        itemMetaAlchemist.setColor(Color.RED);
+        itemMetaAlchemist.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        itemMetaAlchemist.setLore(info);
+        itemStackAlchemist.setItemMeta(itemMetaAlchemist);
+        kitMenuInventory.addItem(itemStackAlchemist);
+
+        //Shadow
+        ItemStack itemStackShadow = new ItemStack(Material.FIREWORK_CHARGE);
+        ItemMeta itemMetaShadow = itemStackShadow.getItemMeta();
+        itemMetaShadow.setDisplayName(ChatColor.GRAY + "Тень");
+        itemMetaShadow.setLore(info);
+        itemMetaShadow.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        itemStackShadow.setItemMeta(itemMetaShadow);
+        kitMenuInventory.addItem(itemStackShadow);
+
+        //Elusive
+        ItemStack itemStackElusive = new ItemStack(Material.CHORUS_FRUIT);
+        ItemMeta itemMetaElusive = itemStackElusive.getItemMeta();
+        itemMetaElusive.setDisplayName(ChatColor.DARK_RED + "Неуловимый");
+        itemMetaElusive.setLore(info);
+        itemMetaElusive.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+        itemStackElusive.setItemMeta(itemMetaElusive);
+        kitMenuInventory.addItem(itemStackElusive);
+
+
     }
-
-//        kitMenuInventory.addItem(kitsMenuCreateItem(Material.BOW, "Лучник"));
-//        kitMenuInventory.addItem(kitsMenuCreateItem(Material.DIAMOND_SWORD, "Мечник"));
-//    }
-//    public ItemStack kitsMenuCreateItem(Material material, String name) {
-//        ItemStack itemStack = new ItemStack(material, 1);
-//        ItemMeta itemMeta = itemStack.getItemMeta();
-//        itemMeta.setDisplayName(name);
-//        info.add("ЛКМ - Выбрать\nПКМ - Посмотреть");
-//        itemMeta.setLore(info);
-//
-//        return itemStack;
-//    }
-//    public static ItemStack createItems(Material material, int amount, String name) {
-//        Player player = null;
-//        ItemStack itemStack = new ItemStack(material, amount);
-//        ItemMeta itemMeta = itemStack.getItemMeta();
-//        itemMeta.setDisplayName(name);
-//        itemMeta.setUnbreakable(true);
-//        if(itemStack.equals(Material.LEATHER_HELMET)
-//                || itemStack.equals(Material.CHAINMAIL_HELMET)
-//                || itemStack.equals(Material.GOLD_HELMET)
-//                || itemStack.equals(Material.DIAMOND_HELMET)){
-//            player.getEquipment().setHelmet(itemStack);
-//        }
-//        else if(itemStack.equals(Material.LEATHER_CHESTPLATE)
-//                || itemStack.equals(Material.CHAINMAIL_CHESTPLATE)
-//                || itemStack.equals(Material.GOLD_CHESTPLATE)
-//                || itemStack.equals(Material.DIAMOND_CHESTPLATE)){
-//            player.getEquipment().setChestplate(itemStack);
-//        }
-//        else if(itemStack.equals(Material.LEATHER_LEGGINGS)
-//                || itemStack.equals(Material.CHAINMAIL_LEGGINGS)
-//                || itemStack.equals(Material.GOLD_LEGGINGS)
-//                || itemStack.equals(Material.DIAMOND_LEGGINGS)){
-//            player.getEquipment().setLeggings(itemStack);
-//        }
-//        else if(itemStack.equals(Material.LEATHER_BOOTS)
-//                || itemStack.equals(Material.CHAINMAIL_BOOTS)
-//                || itemStack.equals(Material.GOLD_BOOTS)
-//                || itemStack.equals(Material.DIAMOND_BOOTS)){
-//            player.getEquipment().setBoots(itemStack);
-//        }
-
-//        return itemStack;
-
 }
 
